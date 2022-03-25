@@ -16,7 +16,7 @@ class DynamodBExample(object):
     def __init__(self):
         print('Initializing class')
 
-    def create_movies_table(self) -> None:
+    def create_movies_table(self,dynamodb=None):
         dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
         table = dynamodb.create_table(
@@ -47,12 +47,17 @@ class DynamodBExample(object):
                 'WriteCapacityUnits': 10
             }
         )
+        return table
 
     def add_dynamo_record(self, table_name: str, item: str) -> None:
         dynamo_resource = boto3.resource('dynamodb', region_name='us-east-1')
 
         table = dynamo_resource.Table(table_name)
 
-        table.put_item(
-            Item=item
-        )
+        response = table.put_item(
+            Item = {
+            'year': 2022,
+            'title': item
+            }
+            )
+        return response

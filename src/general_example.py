@@ -3,6 +3,9 @@ from typing import Dict, List
 
     
 class GeneralExample():
+    def __init__(self) -> None:
+        pass
+
     def flatten_dictionary(content: Dict) -> List:
         '''
         Example of this function call:
@@ -20,7 +23,7 @@ class GeneralExample():
 
 
     def fetch_emp_details(self):
-        db_record = self.load_employee_rec_from_database(self)
+        db_record = self.load_employee_rec_from_database()
 
         emp_details = {
             'empId': db_record[0],
